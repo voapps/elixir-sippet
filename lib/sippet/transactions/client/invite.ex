@@ -11,14 +11,14 @@ defmodule Sippet.Transactions.Client.Invite do
   @timer_b 64 * @timer_a
   @timer_d 32_000  # timer D should be > 32s
 
-  defp retry({past_wait, passed_time}, %State{request: request} = data) do
+  def retry({past_wait, passed_time}, %State{request: request} = data) do
     send_request(request, data)
     new_delay = past_wait * 2
     {:keep_state_and_data, [{:state_timeout, new_delay,
        {new_delay, passed_time + new_delay}}]}
   end
 
-  defp build_ack(request, last_response) do
+  def build_ack(request, last_response) do
     ack =
       :ack
       |> Message.build_request(request.start_line.request_uri)
