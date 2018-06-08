@@ -27,9 +27,7 @@ defmodule Sippet.Transactions.Server do
       require Logger
 
       def init(%State{key: key} = data) do
-        Logger.info fn ->
-          "server transaction #{inspect key} started"
-        end
+        Logger.debug "server transaction #{inspect key} started"
 
         initial_state = unquote(opts)[:initial_state]
         {:ok, initial_state, data}

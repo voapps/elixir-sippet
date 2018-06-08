@@ -22,8 +22,8 @@ defmodule Sippet.Transactions.Client do
 
       require Logger
 
-      def init(%State{key: key} = data, log \\ false) do
-        if log, do: Logger.debug "client transaction #{inspect key} started"
+      def init(%State{key: key} = data) do
+        Logger.debug "client transaction #{inspect key} started"
 
         initial_state = unquote(opts)[:initial_state]
         {:ok, initial_state, data}
